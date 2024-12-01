@@ -4,9 +4,8 @@ import { useAuthStore } from "./store/authStore";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Matchmaking from "./pages/Matchmaking";
-// import Tournaments from "./pages/Tournaments";
-// import TournamentDetails from "./pages/TournamentDetails";
-// import OrganizerDashboard from "./pages/OrganizerDashboard";
+import Leaderboard from "./pages/Leaderboard";
+import Profile from "./pages/Profile";
 import Layout from "./components/Layout";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -42,26 +41,27 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* <Route
-          path="/tournaments"
+        <Route
+          path="/profile"
           element={
             <ProtectedRoute>
               <Layout>
-                <Tournaments />
+                <Profile />
               </Layout>
             </ProtectedRoute>
           }
-        /> */}
-        {/* <Route
-          path="/tournaments/:id"
+        />
+
+        <Route
+          path="/leaderboard"
           element={
             <ProtectedRoute>
               <Layout>
-                <TournamentDetails />
+                <Leaderboard />
               </Layout>
             </ProtectedRoute>
           }
-        /> */}
+        />
       </Routes>
     </BrowserRouter>
   );

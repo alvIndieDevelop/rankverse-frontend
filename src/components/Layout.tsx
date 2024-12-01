@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
-import { Home, LogOut, Swords, Trophy } from "lucide-react";
+import { Home, LogOut, Swords, Trophy, User, Medal } from "lucide-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
@@ -32,21 +32,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Swords className="w-5 h-5" />
                 <span>Matchmaking</span>
               </button>
-              {/* <button
-                onClick={() => navigate("/tournaments")}
+              <button
+                onClick={() => navigate("/leaderboard")}
                 className="text-gray-300 hover:text-white flex items-center space-x-2"
               >
-                <Trophy className="w-5 h-5" />
-                <span>Tournaments</span>
-              </button> */}
+                <Medal className="w-5 h-5" />
+                <span>Leaderboard</span>
+              </button>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-300">
-                {user?.username} -{" "}
-                {(user?.role ?? "").charAt(0).toUpperCase() +
-                  (user?.role ?? "").slice(1)}
-                {user?.role === "player" && ` - ELO: ${user?.elo}`}
-              </span>
+              <button
+                onClick={() => navigate("/profile")}
+                className="text-gray-300 hover:text-white flex items-center space-x-2"
+              >
+                <User className="w-5 h-5" />
+                <span>{user?.username}</span>
+                {user?.role === "player" && (
+                  <span className="text-gray-400">ELO: {user?.elo}</span>
+                )}
+              </button>
               <button
                 onClick={handleLogout}
                 className="text-gray-300 hover:text-white flex items-center space-x-2"

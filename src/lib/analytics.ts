@@ -12,6 +12,11 @@ interface EventParams {
 
 export const analytics = {
   pageView: (page: string) => {
+    if (typeof window.gtag !== "function") {
+      console.error("Google Analytics no está cargado correctamente.");
+      return;
+    }
+
     window.gtag("event", "page_view", {
       page_title: page,
       page_location: window.location.href,
@@ -24,6 +29,11 @@ export const analytics = {
     playerElo: number,
     opponentElo: number
   ) => {
+    if (typeof window.gtag !== "function") {
+      console.error("Google Analytics no está cargado correctamente.");
+      return;
+    }
+
     window.gtag("event", "match_started", {
       opponent_id: opponentId,
       player_elo: playerElo,
@@ -32,6 +42,10 @@ export const analytics = {
   },
 
   matchCompleted: (result: "win" | "loss", eloChange: number) => {
+    if (typeof window.gtag !== "function") {
+      console.error("Google Analytics no está cargado correctamente.");
+      return;
+    }
     window.gtag("event", "match_completed", {
       match_result: result,
       elo_change: eloChange,
@@ -39,6 +53,10 @@ export const analytics = {
   },
 
   tournamentJoined: (tournamentId: string, tournamentName: string) => {
+    if (typeof window.gtag !== "function") {
+      console.error("Google Analytics no está cargado correctamente.");
+      return;
+    }
     window.gtag("event", "tournament_joined", {
       tournament_id: tournamentId,
       tournament_name: tournamentName,
@@ -46,6 +64,10 @@ export const analytics = {
   },
 
   tournamentCreated: (tournamentId: string, maxParticipants: number) => {
+    if (typeof window.gtag !== "function") {
+      console.error("Google Analytics no está cargado correctamente.");
+      return;
+    }
     window.gtag("event", "tournament_created", {
       tournament_id: tournamentId,
       max_participants: maxParticipants,
@@ -53,12 +75,20 @@ export const analytics = {
   },
 
   characterSelected: (characterName: string) => {
+    if (typeof window.gtag !== "function") {
+      console.error("Google Analytics no está cargado correctamente.");
+      return;
+    }
     window.gtag("event", "character_selected", {
       character_name: characterName,
     });
   },
 
   customEvent: (eventName: string, params: EventParams) => {
+    if (typeof window.gtag !== "function") {
+      console.error("Google Analytics no está cargado correctamente.");
+      return;
+    }
     window.gtag("event", eventName, params);
   },
 };
